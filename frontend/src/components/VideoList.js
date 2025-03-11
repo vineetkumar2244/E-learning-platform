@@ -4,8 +4,13 @@ const VideoList = ({ videos, setVideos, setSelectedVideo }) => {
   const handleDelete = async (video) => {
     await fetch(`http://localhost:5000/video/${video}`, { method: "DELETE" });
     alert("Video deleted successfully");
-    setVideos(videos.filter((v) => v !== video));
-    setSelectedVideo(null);
+
+    // Remove deleted video from list
+    const updatedVideos = videos.filter((v) => v !== video);
+    setVideos(updatedVideos);
+
+    // If the deleted video was playing, reset the player
+    setSelectedVideo((prev) => (prev === video ? null : prev));
   };
 
   return (
