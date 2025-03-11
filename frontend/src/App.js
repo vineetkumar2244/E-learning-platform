@@ -15,10 +15,12 @@ const App = () => {
 
   return (
     <div>
-      <h1>Video Upload & Playback</h1>
-      <VideoUpload setVideos={setVideos} />
-      <VideoList videos={videos} setVideos={setVideos} setSelectedVideo={setSelectedVideo} />
-      {selectedVideo && <VideoPlayer video={selectedVideo} />}
+      <h1>Centralized Learning Platform</h1>
+      <div className="container">
+        <VideoUpload setVideos={setVideos} />
+        <VideoList videos={videos} setVideos={setVideos} setSelectedVideo={setSelectedVideo} />
+        {selectedVideo && <VideoPlayer video={selectedVideo} />}
+      </div>
     </div>
   );
 };
