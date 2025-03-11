@@ -11,6 +11,14 @@ const VideoList = ({ videos, setVideos, setSelectedVideo }) => {
 
     // If the deleted video was playing, reset the player
     setSelectedVideo((prev) => (prev === video ? null : prev));
+
+    // ✅ Notify service worker to remove video from cache
+    if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+      navigator.serviceWorker.controller.postMessage({
+        action: "DELETE_VIDEO",
+        videoUrl: `http://localhost:5000/video/${video}`,
+      });
+    }
   };
 
   return (
